@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1044942737663",
+    "firebase_url": "https://bitflip-potholedetector.firebaseio.com",
+    "project_id": "bitflip-potholedetector",
+    "storage_bucket": "bitflip-potholedetector.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044942737663:android:0f75b23ec28523b283bcca",
+        "android_client_info": {
+          "package_name": "com.bitflip.potholereporting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044942737663-fqig66kehe8n51svdfs2pluamflondec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bitflip.potholereporting",
+            "certificate_hash": "16855238d99ef65a4c0e07bbfc3f77d25070faa0"
+          }
+        },
+        {
+          "client_id": "1044942737663-n1pvedcof0k40ahpje7c70u8dhg60bsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNacI5YIuEXziIJ6IqNn1JfUXiKR0VRPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044942737663-n1pvedcof0k40ahpje7c70u8dhg60bsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
