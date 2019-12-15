@@ -81,7 +81,7 @@ class HomeFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == MainActivity.RC_SIGN_IN) {
-            val response = IdpResponse.fromResultIntent(data)
+            // val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK) {
                 text_loginstatus.text = "Welcome, You are logged in"
