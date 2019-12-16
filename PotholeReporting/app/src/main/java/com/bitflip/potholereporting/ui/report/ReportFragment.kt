@@ -29,8 +29,12 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
+import kotlinx.android.synthetic.main.fragment_report.*
 import kotlinx.android.synthetic.main.fragment_report.view.*
+import kotlinx.android.synthetic.main.fragment_report.view.report_progressbar
+import okhttp3.*
 import java.io.File
+import java.io.IOException
 
 
 class ReportFragment : Fragment() {
@@ -55,6 +59,8 @@ class ReportFragment : Fragment() {
         root.button_report_camera.setOnClickListener {
             validatePermissionsForInternalStorage()
         }
+
+        root.report_progressbar.visibility = View.GONE
 
         return root
     }
@@ -187,6 +193,11 @@ class ReportFragment : Fragment() {
     // Upload to Firebase storage and update db
     private fun uploadPhotoToFirebaseStorage(file: File?) {
         Toast.makeText(activity?.applicationContext, "Starting Image Upload", Toast.LENGTH_SHORT).show()
+
+        // Progress spinner
+
+        report_progressbar.visibility = View.VISIBLE
+
         val fileURI = Uri.fromFile(file)
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid
@@ -200,6 +211,7 @@ class ReportFragment : Fragment() {
             Toast.makeText(activity?.applicationContext, "Image Uploaded successfully", Toast.LENGTH_SHORT).show()
         }?.addOnFailureListener {
             Toast.makeText(activity?.applicationContext, "Image Upload Failed", Toast.LENGTH_SHORT).show()
+            report_progressbar.visibility = View.GONE
         }
 
         uploadTask?.continueWithTask {task ->
@@ -239,6 +251,7 @@ class ReportFragment : Fragment() {
 
                     }.addOnFailureListener {
                         Log.d("Report","Failed to get Location")
+                        report_progressbar.visibility = View.GONE
                     }
                 }
 
@@ -246,6 +259,7 @@ class ReportFragment : Fragment() {
                     permission: PermissionRequest?,
                     token: PermissionToken?
                 ) {
+                    report_progressbar.visibility = View.GONE
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                         AlertDialog.Builder(activity)
                             .setTitle("Camera Permission")
@@ -291,11 +305,35 @@ class ReportFragment : Fragment() {
         val childRef = databaseRef.child("submissions").child("$uid").push()
         childRef.setValue(submissionData)
 
-        Log.d("Report", "Data successfully written to Firebase DB")
+        Toast.makeText(activity?.applicationContext, "Data successfully written to Our Servers", Toast.LENGTH_SHORT).show()
 
-        // pingPrivateServer(link)
+
+        pingPrivateServer(childRef.key.toString())
     }
 
-    // TODO : Implement this later
-    // private fun pingPrivateServer(link: String){}
+
+    private fun pingPrivateServer(childRef: String?){
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        val url = "http://37f87798.ngrok.io/api/submit_pic/$uid/$childRef"
+
+
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        client.newCall(request).enqueue(object: Callback {
+            override fun onResponse(call: Call, response: Response) {
+
+                Log.d("Report", response.message)
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d("Report", "Private Server Request error occurred ${e.message}")
+            }
+        })
+        report_progressbar.visibility = View.GONE
+
+        Toast.makeText(activity?.applicationContext, "Image Queued for Evaluation", Toast.LENGTH_SHORT).show()
+    }
 }
