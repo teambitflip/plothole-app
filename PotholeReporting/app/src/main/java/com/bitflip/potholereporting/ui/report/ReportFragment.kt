@@ -314,7 +314,7 @@ class ReportFragment : Fragment() {
 
     private fun pingPrivateServer(childRef: String?){
         val uid = FirebaseAuth.getInstance().currentUser?.uid
-        val url = "http://potholedetector.tk/api/submit_pic/$uid/$childRef"
+        val url = "http://plothole.tk/api/submit_pic/$uid/$childRef"
 
 
         val client = OkHttpClient()
