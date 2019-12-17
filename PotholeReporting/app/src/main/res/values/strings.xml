@@ -3,4 +3,5 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Report</string>
     <string name="title_notifications">Status</string>
+    <string name="report_evaluation_status">Evaluation Successful</string>
 </resources>

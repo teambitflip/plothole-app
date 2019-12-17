@@ -314,7 +314,7 @@ class ReportFragment : Fragment() {
 
     private fun pingPrivateServer(childRef: String?){
         val uid = FirebaseAuth.getInstance().currentUser?.uid
-        val url = "http://37f87798.ngrok.io/api/submit_pic/$uid/$childRef"
+        val url = "http://potholedetector.tk/api/submit_pic/$uid/$childRef"
 
 
         val client = OkHttpClient()
@@ -324,11 +324,23 @@ class ReportFragment : Fragment() {
 
         client.newCall(request).enqueue(object: Callback {
             override fun onResponse(call: Call, response: Response) {
-
+                Thread(Runnable {
+                    activity?.runOnUiThread(java.lang.Runnable {
+                        Toast.makeText(activity, getString(R.string.report_evaluation_status), Toast.LENGTH_SHORT).show()
+                    })
+                }).start()
                 Log.d("Report", response.message)
             }
 
             override fun onFailure(call: Call, e: IOException) {
+                //view?.textview_report_evaluation_status?.text = e.message
+
+                Thread(Runnable {
+                    activity?.runOnUiThread(java.lang.Runnable {
+                        Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
+                    })
+                }).start()
+
                 Log.d("Report", "Private Server Request error occurred ${e.message}")
             }
         })
