@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.bitflip.potholereporting.MainActivity
 import com.bitflip.potholereporting.R
 import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -47,7 +46,9 @@ class HomeFragment : Fragment() {
         }
 
         if(FirebaseAuth.getInstance().currentUser != null){
-            root.text_loginstatus.text = "Welcome, You are logged in"
+            root.button_signin.isEnabled = false
+            val name = FirebaseAuth.getInstance().currentUser?.displayName.toString()
+            root.text_loginstatus.text = "Welcome $name"
         }
 
         return root
@@ -68,6 +69,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun startSignout(){
+        button_signin.isEnabled = true
         AuthUI.getInstance()
             .signOut(activity!!.applicationContext)
             .addOnCompleteListener {
@@ -84,12 +86,15 @@ class HomeFragment : Fragment() {
             // val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK) {
-                text_loginstatus.text = "Welcome, You are logged in"
+                val name = FirebaseAuth.getInstance().currentUser?.displayName.toString()
+                text_loginstatus.text = "Welcome $name"
                 Toast.makeText(activity?.applicationContext, "Successfully signed in", Toast.LENGTH_SHORT).show()
+                button_signin.isEnabled = false
             } else {
                 // Sign in failed. If response is null
                 Toast.makeText(activity?.applicationContext, "Some error occurred, please try again", Toast.LENGTH_SHORT).show()
                 Log.d("Login", "Login Failed")
+                button_signin.isEnabled = true
             }
         }
     }

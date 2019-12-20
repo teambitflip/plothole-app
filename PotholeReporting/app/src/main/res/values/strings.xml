@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pothole Reporting</string>
+    <string name="app_name">Plothole</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Report</string>
     <string name="title_notifications">Status</string>
