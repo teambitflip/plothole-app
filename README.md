@@ -7,9 +7,9 @@ code for the android app.
 
 The app is written in Kotlin.
 
-* Firebase UI
-* Firebase Auth, Storage and Database
-* OkHTTP
+* [Firebase UI](https://firebase.google.com/docs/android/setup)
+* [Firebase Auth](https://firebase.google.com/docs/auth), [Storage](https://firebase.google.com/docs/storage) and [Database](https://firebase.google.com/docs/database)
+* [OkHTTP](https://square.github.io/okhttp/)
 
 
 ## Screenshots
