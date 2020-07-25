@@ -8,7 +8,7 @@ to the Plothole backend for further inference.
 
 ## Dependencies
 
-The app is written in Kotlin.
+The app is written in Kotlin. The `PlotholeApp` directory can be opened up as a regular Android Studio project
 
 * [Firebase UI](https://firebase.google.com/docs/android/setup)
 * [Firebase Auth](https://firebase.google.com/docs/auth), [Storage](https://firebase.google.com/docs/storage) and [Database](https://firebase.google.com/docs/database)
@@ -21,6 +21,8 @@ The app is written in Kotlin.
 <img src="screenshots/a.jpg" width="40%">
 <img src="screenshots/b.jpg" width="40%">
 </p>
+
+
 
 ## LICENSE
 Copyright (c) **Team BitFlip**. All rights reserved. Licensed under the MIT License
