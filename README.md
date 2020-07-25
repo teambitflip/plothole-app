@@ -1,9 +1,27 @@
-# androidapp
+# Plothole - Android App
 
-The android app to be used by the user. Just open the `PotholeReporting` directory using Android Studio and it should work fine.
+The mobile component of Plothole consists of an Android app the citizens can use to click photos of the potholes they spot. This repository has the
+code for the android app.
+
+## Dependencies
+
+The app is written in Kotlin.
+
+* Firebase UI
+* Firebase Auth, Storage and Database
+* OkHTTP
+
+
+## 
 
 ## Screenshots
 
-<img src="screenshots/a.jpg" width="400px">
-<img src="screenshots/b.jpg" width="400px">
+<p align="left">
+<img src="screenshots/a.jpg" width="50%">
+<img src="screenshots/b.jpg" width="50%">
+</p>
 
+## LICENSE
+Copyright (c) **Team BitFlip**. All rights reserved. Licensed under the MIT License
+
+[![](https://img.shields.io/github/license/junaidrahim/desiresalesportal?style=for-the-badge)](LICENSE)
