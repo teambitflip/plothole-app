@@ -12,13 +12,11 @@ The app is written in Kotlin.
 * OkHTTP
 
 
-## 
-
 ## Screenshots
 
-<p align="left">
-<img src="screenshots/a.jpg" width="50%">
-<img src="screenshots/b.jpg" width="50%">
+<p align="center">
+<img src="screenshots/a.jpg" width="40%">
+<img src="screenshots/b.jpg" width="40%">
 </p>
 
 ## LICENSE
